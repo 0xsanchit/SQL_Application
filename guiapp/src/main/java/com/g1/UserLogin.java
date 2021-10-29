@@ -75,7 +75,7 @@ public class UserLogin extends JFrame {
         lblUsername.setBackground(Color.BLACK);
         lblUsername.setForeground(Color.BLACK);
         lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 31));
-        lblUsername.setBounds(250, 166, 193, 52);
+        lblUsername.setBounds(250, 170, 193, 52);
         contentPane.add(lblUsername);
 
         JLabel lblPassword = new JLabel("Roll Number");

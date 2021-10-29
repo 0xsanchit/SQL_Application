@@ -1,5 +1,6 @@
 package com.g1;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 
 public class HomeFrame extends JFrame {
@@ -15,7 +18,8 @@ public class HomeFrame extends JFrame {
     private JLabel subheading;
     private JLabel selectDepartment;
     private JPanel contentPane;
-    private JComboBox dropdownDept;
+    private JComboBox<String> dropdownDept;
+    private JButton proceed;
     private String sem_val = "even";
     private String year_val = "2006";
 
@@ -57,5 +61,19 @@ public class HomeFrame extends JFrame {
         dropdownDept.setForeground(Color.BLACK);
         dropdownDept.setSize(1000, 100);
         contentPane.add(dropdownDept);
+
+        proceed = new JButton("Proceed");
+        proceed.setBorder(new EmptyBorder(50, 5, 5, 5));
+        proceed.setFont(new Font("Times New Roman", Font.PLAIN, 46));
+        proceed.setForeground(Color.BLACK);
+        proceed.setSize(1000, 100);
+        contentPane.add(proceed);
+        proceed.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO: Navigate outside
+                //Make a choice between switching panels and switching frames - whatever is better here.
+            }        
+        });
     }
 }
