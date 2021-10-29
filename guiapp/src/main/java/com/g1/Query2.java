@@ -58,7 +58,7 @@ public class Query2{
             return "Unknown Course! Enrollment failed";
         }
 
-        String passlistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND grade != 'P' AND rollNo = \'" + rno + "\'";
+        String passlistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND grade != 'P' AND year < 2006 AND rollNo = " + rno;
         // NO MORE RESTRICTIONS IN THE ABOVE QUERY AS 2006 EVEN SEM >= ALL ENROLLMENTS
         ResultSet passList = s.executeQuery(passlistQuery);
         HashSet<String> passSet = new HashSet<String>();
@@ -91,9 +91,12 @@ public class Query2{
         else
         {
             //P for pending grade
-            String insertQuery = "INSERT INTO enrollment VALUES(\'"+rno+"\',\'"+cid+"\',\'even\',2001,\'P\')";
-            s.executeQuery(insertQuery);
-            return "The student has been successfully enrolled for the course";
+            try{String insertQuery = "INSERT INTO enrollment VALUES("+rno+","+cid+",even,2006,P)";
+            ResultSet res = s.executeQuery(insertQuery);
+            return "The student has been successfully enrolled for the course";}
+            catch (Exception e) {
+                return "Insert Query Error!";
+            }
         }
     }
 }

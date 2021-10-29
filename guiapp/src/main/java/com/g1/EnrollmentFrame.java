@@ -81,6 +81,7 @@ public class EnrollmentFrame extends JFrame {
         courseField.setFont(new Font("Tahoma", Font.PLAIN, 32));
         courseField.setBounds(481, 286, 281, 68);
         contentPane.add(courseField);
+        // courseField.se
 
         JLabel lblUseruserName = new JLabel("Roll Number");
         lblUseruserName.setBackground(Color.BLACK);

@@ -33,7 +33,7 @@ public class SQLConnection {
             return rs;
         } catch (Exception e) {
             e.printStackTrace();
-            // System.out.println("Query Failed");
+            System.out.println("Query Failed: " + query);
             return null;
         }
     }
