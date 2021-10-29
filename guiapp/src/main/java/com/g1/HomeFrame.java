@@ -31,6 +31,9 @@ public class HomeFrame extends JFrame {
 
     private String[] tryoutlist = {"CS", "Elec", "Mech", "Chem", "Meta"};
 
+    private Vector<String> deptnames = new Vector<>();
+    private Vector<String> deptids = new Vector<>();
+
     public HomeFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 10, 2000, 1000);
@@ -113,13 +116,14 @@ public class HomeFrame extends JFrame {
         setContentPane(contentPane);
 
         // tryoutlist = new String[];
-        Vector<String> depts = new Vector<>();
+        // Vector<String> depts = new Vector<>();
         ResultSet resultSet = sqlConnection.executeQuery("select * from department");
         while (resultSet.next()) {
             System.out.println(resultSet.getString("name"));
-            depts.add(resultSet.getString("name"));
+            deptnames.add(resultSet.getString("name"));
+            deptids.add(resultSet.getString("deptId"));
         }
-        sqlConnection.closeConnection();
+        // sqlConnection.closeConnection();
 
         heading = new JLabel("Welcome to the Application!");
         heading.setForeground(Color.BLACK);
@@ -141,7 +145,7 @@ public class HomeFrame extends JFrame {
         selectDepartment.setBorder(new EmptyBorder(100, 600, 150, 600));
         contentPane.add(selectDepartment);
 
-        dropdownDept = new JComboBox<>(depts);
+        dropdownDept = new JComboBox<>(deptnames);
         // dropdownDept.setBounds(70, 200, 200, 100);
         dropdownDept.setBorder(new EmptyBorder(5, 5, 5, 5));
         dropdownDept.setFont(new Font("Times New Roman", Font.PLAIN, 40));
@@ -164,12 +168,23 @@ public class HomeFrame extends JFrame {
                 //TODO: Navigate outside
                 //Make a choice between switching panels and switching frames - whatever is better here.
                 // System.out.println("Pressed");
-                if(printmessage.isVisible()) {
-                    printmessage.setVisible(false);
-                } else {
-                    printmessage.setText("Button Pressed!");
-                    printmessage.setVisible(true);
+                // if(printmessage.isVisible()) {
+                //     printmessage.setVisible(false);
+                // } else {
+                //     printmessage.setText("Button Pressed!");
+                //     printmessage.setVisible(true);
+                // }
+                Integer index = dropdownDept.getSelectedIndex();
+                System.out.println("Selected dept : " + deptnames.get(index) + " with id = " + deptids.get(index));
+                EnrollmentFrame frame;
+                try {
+                    frame = new EnrollmentFrame(sqlConnection, deptids.get(index));
+                    frame.setVisible(true);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
                 }
+                setVisible(false);
+                dispose();
             }        
         });
 
