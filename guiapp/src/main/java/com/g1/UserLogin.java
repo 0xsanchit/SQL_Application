@@ -16,6 +16,7 @@ import javax.print.DocFlavor.STRING;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -152,21 +153,11 @@ public class UserLogin extends JFrame {
                         }
                     }
                 });
-                else
-                EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            // UserLogin frame = new UserLogin();
-                            HomeFrame frame;
-                            frame = new HomeFrame();
-                            setVisible(false);
-                            frame.setVisible(true);
-                            dispose();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                else {
+                    JOptionPane.showMessageDialog(null, "Cannot Connect to MySQL!\nPlease make sure you entered correct access credentials.");
+                    userNameField.setText("");
+                    passwordField.setText("");
+                }
                 
             }
         });
