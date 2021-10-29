@@ -22,6 +22,7 @@ public class HomeFrame extends JFrame {
     private JPanel contentPane;
     private JComboBox<String> dropdownDept;
     private JButton proceed;
+    private JLabel printmessage;
     private String sem_val = "even";
     private String year_val = "2006";
 
@@ -79,7 +80,21 @@ public class HomeFrame extends JFrame {
                 //TODO: Navigate outside
                 //Make a choice between switching panels and switching frames - whatever is better here.
                 // System.out.println("Pressed");
+                if(printmessage.isVisible()) {
+                    printmessage.setVisible(false);
+                } else {
+                    printmessage.setText("Button Pressed!");
+                    printmessage.setVisible(true);
+                }
             }        
         });
+
+        printmessage = new JLabel();
+        printmessage.setForeground(Color.RED);
+        printmessage.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+        // subheading.setBounds(80, 100, 500, 200);
+        printmessage.setVisible(false);
+        contentPane.add(printmessage);
+
     }
 }
