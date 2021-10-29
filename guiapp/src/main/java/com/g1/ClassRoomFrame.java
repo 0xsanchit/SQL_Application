@@ -26,6 +26,7 @@ public class ClassRoomFrame extends JFrame{
     private String deptname;
     private String deptid;
     private JButton process;
+    private JButton back;
 
     private Vector<String> cids = new Vector<>();
     private Vector<String> cnames = new Vector<>();
@@ -62,7 +63,7 @@ public class ClassRoomFrame extends JFrame{
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(450, 190, 1014, 1000);
+        setBounds(450, 190, 1014, 750);
         setResizable(false);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -135,5 +136,25 @@ public class ClassRoomFrame extends JFrame{
         });
 
         contentPane.add(process);
+
+        back = new JButton("Back");
+        back.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        back.setBounds(245, 508, 162, 73);
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Do something : navigate back
+                try {
+                    HomeFrame frame = new HomeFrame(sqlConnection);
+                    setVisible(false);
+                    frame.setVisible(true);
+                    dispose();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                
+            }
+        });
+
+        contentPane.add(back);
     }
 }

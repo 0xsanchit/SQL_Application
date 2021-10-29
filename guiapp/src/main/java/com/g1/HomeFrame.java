@@ -171,9 +171,12 @@ public class HomeFrame extends JFrame {
                 Integer index = dropdownDept.getSelectedIndex();
                 System.out.println("Selected dept : " + deptnames.get(index) + " with id = " + deptids.get(index));
                 EnrollmentFrame frame;
+                ClassRoomFrame cframe;
                 try {
                     frame = new EnrollmentFrame(sqlConnection, deptids.get(index));
                     frame.setVisible(true);
+                    // cframe = new ClassRoomFrame(sqlConnection, deptids.get(index));
+                    // cframe.setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
