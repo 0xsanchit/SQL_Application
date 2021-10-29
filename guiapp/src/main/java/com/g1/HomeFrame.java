@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.FlowLayout;
 
 public class HomeFrame extends JFrame {
@@ -51,28 +53,32 @@ public class HomeFrame extends JFrame {
         selectDepartment.setForeground(Color.BLACK);
         selectDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 46));
         // selectDepartment.setBounds(80, 100, 500, 200);
-        selectDepartment.setBorder(new EmptyBorder(100, 600, 5, 600));
+        selectDepartment.setBorder(new EmptyBorder(100, 600, 150, 600));
         contentPane.add(selectDepartment);
 
         dropdownDept = new JComboBox<>(tryoutlist);
         // dropdownDept.setBounds(70, 200, 200, 100);
-        dropdownDept.setBorder(new EmptyBorder(50, 5, 5, 5));
+        dropdownDept.setBorder(new EmptyBorder(5, 5, 5, 5));
         dropdownDept.setFont(new Font("Times New Roman", Font.PLAIN, 40));
         dropdownDept.setForeground(Color.BLACK);
         dropdownDept.setSize(1000, 100);
         contentPane.add(dropdownDept);
 
         proceed = new JButton("Proceed");
-        proceed.setBorder(new EmptyBorder(50, 5, 5, 5));
+        proceed.setBorder(new EmptyBorder(5, 5, 5, 5));
         proceed.setFont(new Font("Times New Roman", Font.PLAIN, 46));
         proceed.setForeground(Color.BLACK);
+        proceed.setBackground(contentPane.getBackground());
+        proceed.setBorderPainted(true);
         proceed.setSize(1000, 100);
+        // proceed.setMnemonic(KeyEvent.VK_A);
         contentPane.add(proceed);
         proceed.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Navigate outside
                 //Make a choice between switching panels and switching frames - whatever is better here.
+                // System.out.println("Pressed");
             }        
         });
     }
