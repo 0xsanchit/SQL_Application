@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.EventQueue;
 
+import javax.print.DocFlavor.STRING;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,7 +52,7 @@ public class UserLogin extends JFrame {
     public UserLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(450, 190, 1014, 597);
-        setResizable(true);
+        setResizable(false);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -96,7 +97,9 @@ public class UserLogin extends JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 String useruserName = userNameField.getText();
-                String password = passwordField.getPassword().toString();
+                // String password = passwordField.getPassword().toString();
+                String password = passwordField.getText();
+                System.out.println("User: " + useruserName + " \nPassword: " + password + " \n");
                 // try {
                 //     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo",
                 //         "root", "root");
@@ -120,12 +123,7 @@ public class UserLogin extends JFrame {
                 //     sqlException.printStackTrace();
                 // }
                 SQLConnection sqlConnection = new SQLConnection();
-                boolean status = false;
-                try {
-                    status = sqlConnection.connect(useruserName, password);
-                } catch (Exception exp) {
-                    exp.printStackTrace();
-                }
+                boolean status = sqlConnection.connect(useruserName, password);
                 if (status == true) {
                     ResultSet resultSet = sqlConnection.executeQuery("select * from student");
                     try {
@@ -135,7 +133,7 @@ public class UserLogin extends JFrame {
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
-                    sqlConnection.closeConnection();
+                    // sqlConnection.closeConnection();
                 } else {
                     System.out.println("Connection Failed");
                 }
