@@ -1,11 +1,13 @@
+package com.g1;
+
+
 import java.sql.*;
 import java.util.*;
 
-import javax.naming.spi.DirStateFactory.Result;
 
 public class Query1 {
-    public static String updateCourse(SQLConnection s,String deptId,String cId, String tId, String cRoom){
-
+    /* updateCourse(s, DepartmentID, CourseID, TeacherId, ClassRoom) */
+    public static String updateCourse(SQLConnection s,String deptId,String cId, String tId, String cRoom) throws SQLException{
         /* dept Id validation */
         String deptIdsQuery = "SELECT deptId FROM department";
         ResultSet deptIdsResultSet = s.executeQuery(deptIdsQuery);
@@ -17,7 +19,7 @@ public class Query1 {
             return "Update Failed, Department Id="+deptId+" does not exist!";
         }
 
-        /* courseId validation, if a course is not already in courses List, update fails */
+        /* courseId validation, if cId is not already in courses List, update fails */
         String courseIdsQueryString = "SELECT courseId FROM course WHERE deptNo="+deptId;
         ResultSet courses = s.executeQuery(courseIdsQueryString);
         Set<String>coursesList = new HashSet<String>();
@@ -36,33 +38,25 @@ public class Query1 {
             profsList.add(profsResult.getString("empId"));
         }
         if(!profsList.contains(tId)){
-            return "Update Failed, Teacher Id="+tId+" is unrecognized!";
+            return "Update Failed, Teacher Id="+tId+" not in the department!";
         }
         
         /* updating course, if tuple already exists with given course number, update teacher ID and Room number otherwise Insert a new tuple */
         String teachingQuery = "SELECT empId, courseId from teaching WHERE sem = 'Even' AND year = 2006";
-        Statement stmt = s.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); // ResultSet is set as updatable
-        ResultSet reqTeaching = stmt.executeQuery(teachingQuery);
-        Set<String>teachingList = new HashSet<String>();
+        ResultSet reqTeaching = s.executeQuery(teachingQuery);
         boolean updated = false;
         while(reqTeaching.next()){
             String courseId = reqTeaching.getString("courseId");
-            if(courseId==cId){
-                reqTeaching.updateString("empId", tId);
-                reqTeaching.updateString("classRoom", cRoom);
+            if(courseId.equals(cId)){
+                String updateQuery = "UPDATE teaching SET empId = '"+tId+"', classRoom = '"+cRoom+"' WHERE courseId = '"+cId+"' AND sem = 'Even' AND year = 2006";
+                s.executeUpdate(updateQuery);
                 updated = true;
                 break;
             }
         }
         if(!updated){
-            reqTeaching.moveToInsertRow();
-            reqTeaching.updateString("empId", tId);
-            reqTeaching.updateString("courseId", cId);
-            reqTeaching.updateString("sem", "Even");
-            reqTeaching.updateFloat("year", 2006);
-            reqTeaching.updateString("classRoom", cRoom);
-            reqTeaching.insertRow();
-            reqTeaching.beforeFirst();
+            String insertQuery = "INSERT INTO teaching VALUES ('"+tId+"','"+cId+"','Even',2006,'"+cRoom+"');";
+            s.executeUpdate(insertQuery);
             return "Inserted course successfully.";
         }
         else{
