@@ -16,7 +16,8 @@ public final class App {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    UserLogin frame = new UserLogin();
+                    // UserLogin frame = new UserLogin();
+                    HomeFrame frame = new HomeFrame();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
