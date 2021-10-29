@@ -91,12 +91,12 @@ public class Query2{
         else
         {
             //P for pending grade
-            try{String insertQuery = "INSERT INTO enrollment VALUES("+rno+","+cid+",even,2006,P)";
-            ResultSet res = s.executeQuery(insertQuery);
-            return "The student has been successfully enrolled for the course";}
-            catch (Exception e) {
+            String insertQuery = "INSERT INTO enrollment VALUES(\'"+rno+"\',\'"+cid+"\',\'even\',\'2006\',\'P\')";
+            int res = s.executeUpdate(insertQuery);
+            if(res <= 0) {
                 return "Insert Query Error!";
             }
+            return "The student has been successfully enrolled for the course";
         }
     }
 }

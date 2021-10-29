@@ -112,6 +112,7 @@ public class EnrollmentFrame extends JFrame {
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
+                rollnoField.setText("");
             }
         });
 

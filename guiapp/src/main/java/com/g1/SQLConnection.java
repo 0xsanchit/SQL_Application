@@ -38,6 +38,18 @@ public class SQLConnection {
         }
     }
 
+    public int executeUpdate(String query) {
+        try {
+            Statement stmt = connection.createStatement();
+            int ret = stmt.executeUpdate(query);
+            return ret;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Query Failed: " + query);
+            return -1;
+        }
+    }
+
     public boolean closeConnection() {
         try {
             connection.close();
