@@ -108,12 +108,13 @@ public class HomeFrame extends JFrame {
 
     public HomeFrame(SQLConnection sqlConnection) throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 10, 2000, 1000);
-        setResizable(true);
+        setBounds(450, 190, 1014, 597);
+        setResizable(false);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new FlowLayout(FlowLayout.CENTER));
         setContentPane(contentPane);
+        // contentPane.scal
+        contentPane.setLayout(null);
 
         // tryoutlist = new String[];
         // Vector<String> depts = new Vector<>();
@@ -127,39 +128,32 @@ public class HomeFrame extends JFrame {
 
         heading = new JLabel("Welcome to the Application!");
         heading.setForeground(Color.BLACK);
-        heading.setFont(new Font("Times New Roman", Font.PLAIN, 96));
-        // heading.setBounds(80, 50, 500, 200);
-        heading.setBorder(new EmptyBorder(5, 5, 5, 5));
+        heading.setFont(new Font("Times New Roman", Font.PLAIN, 46));
+        heading.setBounds(100, 13, 1000, 93);
+        // heading.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.add(heading);
 
-        subheading = new JLabel("Here you can add course details of " + sem_val + " semester of year " + year_val);
-        subheading.setForeground(Color.BLACK);
-        subheading.setFont(new Font("Times New Roman", Font.PLAIN, 46));
-        // subheading.setBounds(80, 100, 500, 200);
-        contentPane.add(subheading);
+        // subheading = new JLabel("Here you can add course details of " + sem_val + " semester of year " + year_val);
+        // subheading.setForeground(Color.BLACK);
+        // subheading.setFont(new Font("Times New Roman", Font.PLAIN, 46));
+        // // subheading.setBounds(80, 100, 500, 200);
+        // contentPane.add(subheading);
 
         selectDepartment = new JLabel("Please select a department");
+        selectDepartment.setBackground(Color.BLACK);
         selectDepartment.setForeground(Color.BLACK);
-        selectDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 46));
-        // selectDepartment.setBounds(80, 100, 500, 200);
-        selectDepartment.setBorder(new EmptyBorder(100, 600, 150, 600));
+        selectDepartment.setFont(new Font("Tahoma", Font.PLAIN, 31));
+        selectDepartment.setBounds(50, 170, 493, 52);
         contentPane.add(selectDepartment);
 
         dropdownDept = new JComboBox<>(deptnames);
-        // dropdownDept.setBounds(70, 200, 200, 100);
-        dropdownDept.setBorder(new EmptyBorder(5, 5, 5, 5));
-        dropdownDept.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-        dropdownDept.setForeground(Color.BLACK);
-        dropdownDept.setSize(1000, 100);
+        dropdownDept.setFont(new Font("Tahoma", Font.PLAIN, 32));
+        dropdownDept.setBounds(681, 170, 281, 68);
         contentPane.add(dropdownDept);
 
         proceed = new JButton("Proceed");
-        proceed.setBorder(new EmptyBorder(5, 5, 5, 5));
-        proceed.setFont(new Font("Times New Roman", Font.PLAIN, 46));
-        proceed.setForeground(Color.BLACK);
-        proceed.setBackground(contentPane.getBackground());
-        proceed.setBorderPainted(true);
-        proceed.setSize(1000, 100);
+        proceed.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        proceed.setBounds(545, 392, 162, 73);
         // proceed.setMnemonic(KeyEvent.VK_A);
         contentPane.add(proceed);
         proceed.addActionListener(new ActionListener(){
@@ -191,8 +185,7 @@ public class HomeFrame extends JFrame {
         printmessage = new JLabel();
         printmessage.setForeground(Color.RED);
         printmessage.setFont(new Font("Times New Roman", Font.PLAIN, 28));
-        // subheading.setBounds(80, 100, 500, 200);
-        printmessage.setVisible(false);
+        printmessage.setBounds(0, 0, 1008, 562);
         contentPane.add(printmessage);
 
     }
