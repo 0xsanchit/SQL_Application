@@ -60,27 +60,33 @@ public class Query2{
         
         String complistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND year < 2006 AND rollNo = " + rno;
         ResultSet compList = s.executeQuery(complistQuery);
-        HashSet<String> compSet = new HashSet<String>();
+        // HashSet<String> compSet = new HashSet<String>();
         while(compList.next())
         {
-            compSet.add(compList.getString("courseId"));
+            // compSet.add(compList.getString("courseId"));
+            if(cid.equals(compList.getString("courseId"))) {
+                return "Can't enroll in a course that the student has already passed ";
+            }
         }
-        if(compSet.contains(cid))
-        {
-            return "Can't enroll in a course that the student has already passed ";
-        }
+        // if(compSet.contains(cid))
+        // {
+        //     return "Can't enroll in a course that the student has already passed ";
+        // }
         
         String pendlistQuery = "SELECT courseId FROM enrollment WHERE grade = 'P' AND year <= 2006 AND rollNo = " + rno;
         ResultSet pendList = s.executeQuery(pendlistQuery);
-        HashSet<String> pendSet = new HashSet<String>();
+        // HashSet<String> pendSet = new HashSet<String>();
         while(pendList.next())
         {
-            pendSet.add(pendList.getString("courseId"));
+            // pendSet.add(pendList.getString("courseId"));
+            if(cid.equals(pendList.getString("courseId"))) {
+                return "Can't enroll in a course that the student is currently enrolled for ";
+            }
         }
-        if(pendSet.contains(cid))
-        {
-            return "Can't enroll in a course that the student is currently enrolled for ";
-        }
+        // if(pendSet.contains(cid))
+        // {
+        //     return "Can't enroll in a course that the student is currently enrolled for ";
+        // }
         
         String passlistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND grade != 'P' AND year < 2006 AND rollNo = " + rno;
         ResultSet passList = s.executeQuery(passlistQuery);
