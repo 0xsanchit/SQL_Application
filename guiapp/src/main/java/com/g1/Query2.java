@@ -57,9 +57,32 @@ public class Query2{
         {
             return "Unknown Course! Enrollment failed";
         }
-
+        
+        String complistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND year < 2006 AND rollNo = " + rno;
+        ResultSet compList = s.executeQuery(complistQuery);
+        HashSet<String> compSet = new HashSet<String>();
+        while(compList.next())
+        {
+            compSet.add(compList.getString("courseId"));
+        }
+        if(compSet.contains(cid))
+        {
+            return "Can't enroll in a course that the student has already passed ";
+        }
+        
+        String pendlistQuery = "SELECT courseId FROM enrollment WHERE grade = 'P' AND year <= 2006 AND rollNo = " + rno;
+        ResultSet pendList = s.executeQuery(pendlistQuery);
+        HashSet<String> pendSet = new HashSet<String>();
+        while(pendList.next())
+        {
+            pendSet.add(pendList.getString("courseId"));
+        }
+        if(pendSet.contains(cid))
+        {
+            return "Can't enroll in a course that the student is currently enrolled for ";
+        }
+        
         String passlistQuery = "SELECT courseId FROM enrollment WHERE grade != 'U' AND grade != 'P' AND year < 2006 AND rollNo = " + rno;
-        // NO MORE RESTRICTIONS IN THE ABOVE QUERY AS 2006 EVEN SEM >= ALL ENROLLMENTS
         ResultSet passList = s.executeQuery(passlistQuery);
         HashSet<String> passSet = new HashSet<String>();
         while(passList.next())
