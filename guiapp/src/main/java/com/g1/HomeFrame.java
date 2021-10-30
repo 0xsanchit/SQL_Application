@@ -152,7 +152,7 @@ public class HomeFrame extends JFrame {
 
         proceed = new JButton("Proceed");
         proceed.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        proceed.setBounds(545, 392, 162, 73);
+        proceed.setBounds(345, 392, 162, 73);
         // proceed.setMnemonic(KeyEvent.VK_A);
         contentPane.add(proceed);
         proceed.addActionListener(new ActionListener(){

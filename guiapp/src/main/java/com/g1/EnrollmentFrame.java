@@ -41,7 +41,7 @@ public class EnrollmentFrame extends JFrame {
                 // break;
             }
 
-            resultSet = sqlConnection.executeQuery("select * from course where deptNo = " + depid);
+            resultSet = sqlConnection.executeQuery("select * from course c where c.deptNo = " + depid + " and exists (select * from teaching t where t.sem = 'even' and t.year = 2006 and t.courseId = c.courseId)");
             while(resultSet.next()) {
                 cids.add(resultSet.getString("courseId"));
                 cnames.add(resultSet.getString("cname"));
