@@ -125,19 +125,6 @@ public class UserLogin extends JFrame {
                 // }
                 SQLConnection sqlConnection = new SQLConnection();
                 boolean status = sqlConnection.connect(useruserName, password);
-                if (status == true) {
-                    ResultSet resultSet = sqlConnection.executeQuery("select * from student");
-                    try {
-                        while (resultSet.next()) {
-                            System.out.println(resultSet.getString("name"));
-                        }
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                    // sqlConnection.closeConnection();
-                } else {
-                    System.out.println("Connection Failed");
-                }
                 if(status)
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {

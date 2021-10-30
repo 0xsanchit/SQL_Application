@@ -12,7 +12,7 @@ public class Query2{
         {
             key = itr.get(0);
             value = itr.get(1);
-            if(value == cid && !allpre.contains(key))
+            if(value.equals(cid) && !allpre.contains(key))
             {
                 recurse(p, key, allpre);
                 allpre.add(key);

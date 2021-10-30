@@ -120,7 +120,6 @@ public class HomeFrame extends JFrame {
         // Vector<String> depts = new Vector<>();
         ResultSet resultSet = sqlConnection.executeQuery("select * from department");
         while (resultSet.next()) {
-            System.out.println(resultSet.getString("name"));
             deptnames.add(resultSet.getString("name"));
             deptids.add(resultSet.getString("deptId"));
         }
@@ -160,15 +159,13 @@ public class HomeFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Integer index = dropdownDept.getSelectedIndex();
-                System.out.println("Selected dept : " + deptnames.get(index) + " with id = " + deptids.get(index));
-                EnrollmentFrame frame;
+                // EnrollmentFrame frame;
                 ClassRoomFrame cframe;
                 try {
                     // frame = new EnrollmentFrame(sqlConnection, deptids.get(index));
+                    // frame.setVisible(true);
                     cframe = new ClassRoomFrame(sqlConnection, deptids.get(index));
                     cframe.setVisible(true);
-                    // cframe = new ClassRoomFrame(sqlConnection, deptids.get(index));
-                    // cframe.setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
