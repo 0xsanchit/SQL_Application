@@ -27,6 +27,7 @@ public class ClassRoomFrame extends JFrame{
     private String deptid;
     private JButton process;
     private JButton back;
+    private JButton next;
 
     private Vector<String> cids = new Vector<>();
     private Vector<String> cnames = new Vector<>();
@@ -116,7 +117,7 @@ public class ClassRoomFrame extends JFrame{
 
         process = new JButton("Process");
         process.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        process.setBounds(545, 508, 162, 73);
+        process.setBounds(445, 508, 162, 73);
         process.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Do something
@@ -139,7 +140,7 @@ public class ClassRoomFrame extends JFrame{
 
         back = new JButton("Back");
         back.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        back.setBounds(245, 508, 162, 73);
+        back.setBounds(145, 508, 162, 73);
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Do something : navigate back
@@ -156,5 +157,25 @@ public class ClassRoomFrame extends JFrame{
         });
 
         contentPane.add(back);
+
+        next = new JButton("Enrollment");
+        next.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        next.setBounds(745, 508, 212, 73);
+        next.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Do something : navigate next
+                try {
+                    EnrollmentFrame frame = new EnrollmentFrame(sqlConnection, deptid);
+                    setVisible(false);
+                    frame.setVisible(true);
+                    dispose();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                
+            }
+        });
+
+        contentPane.add(next);
     }
 }

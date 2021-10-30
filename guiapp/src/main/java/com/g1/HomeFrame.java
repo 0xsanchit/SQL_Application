@@ -159,22 +159,14 @@ public class HomeFrame extends JFrame {
         proceed.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Navigate outside
-                //Make a choice between switching panels and switching frames - whatever is better here.
-                // System.out.println("Pressed");
-                // if(printmessage.isVisible()) {
-                //     printmessage.setVisible(false);
-                // } else {
-                //     printmessage.setText("Button Pressed!");
-                //     printmessage.setVisible(true);
-                // }
                 Integer index = dropdownDept.getSelectedIndex();
                 System.out.println("Selected dept : " + deptnames.get(index) + " with id = " + deptids.get(index));
                 EnrollmentFrame frame;
                 ClassRoomFrame cframe;
                 try {
-                    frame = new EnrollmentFrame(sqlConnection, deptids.get(index));
-                    frame.setVisible(true);
+                    // frame = new EnrollmentFrame(sqlConnection, deptids.get(index));
+                    cframe = new ClassRoomFrame(sqlConnection, deptids.get(index));
+                    cframe.setVisible(true);
                     // cframe = new ClassRoomFrame(sqlConnection, deptids.get(index));
                     // cframe.setVisible(true);
                 } catch (SQLException e1) {
