@@ -40,6 +40,10 @@ public class Query1 {
         if(!profsList.contains(tId)){
             return "Update Failed, Teacher Id="+tId+" not in the department!";
         }
+        /* Room ID validation */
+        if(cRoom!=null && cRoom.length()>8){
+            return "Update Failed, Invalid room number!";
+        }
         
         /* updating course, if tuple already exists with given course number, update teacher ID and Room number otherwise Insert a new tuple */
         String teachingQuery = "SELECT empId, courseId from teaching WHERE sem = 'Even' AND year = 2006";
