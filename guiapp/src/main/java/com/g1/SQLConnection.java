@@ -20,7 +20,7 @@ public class SQLConnection {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/academic_insti", username, password);
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             // System.out.println("Query Failed");
             return false;
         }

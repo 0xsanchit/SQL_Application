@@ -8,11 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.awt.EventQueue;
 
-import javax.print.DocFlavor.STRING;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -99,30 +96,7 @@ public class UserLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String useruserName = userNameField.getText();
                 // String password = passwordField.getPassword().toString();
-                String password = passwordField.getText();
-                System.out.println("User: " + useruserName + " \nPassword: " + password + " \n");
-                // try {
-                //     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo",
-                //         "root", "root");
-
-                //     PreparedStatement st = (PreparedStatement) connection
-                //         .prepareStatement("Select userName, password from student where userName=? and password=?");
-
-                //     st.setString(1, useruserName);
-                //     st.setString(2, password);
-                //     ResultSet rs = st.executeQuery();
-                //     if (rs.next()) {
-                //         dispose();
-                //         UserHome ah = new UserHome(useruserName);
-                //         ah.setTitle("Welcome");
-                //         ah.setVisible(true);
-                //         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
-                //     } else {
-                //         JOptionPane.showMessageDialog(btnNewButton, "Wrong UseruserName & Password");
-                //     }
-                // } catch (SQLException sqlException) {
-                //     sqlException.printStackTrace();
-                // }
+                String password = new String(passwordField.getPassword());
                 SQLConnection sqlConnection = new SQLConnection();
                 boolean status = sqlConnection.connect(useruserName, password);
                 if(status)
@@ -136,7 +110,8 @@ public class UserLogin extends JFrame {
                             frame.setVisible(true);
                             dispose();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(null, "Unexpected Error Occured!");
+                            System.exit(0);
                         }
                     }
                 });

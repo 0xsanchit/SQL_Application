@@ -1,6 +1,5 @@
 package com.g1;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -9,7 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +22,6 @@ public class ClassRoomFrame extends JFrame{
     private JTextField classRoomField;
     private JPanel contentPane;
     private String deptname;
-    private String deptid;
     private JButton process;
     private JButton back;
     private JButton next;
@@ -36,7 +33,7 @@ public class ClassRoomFrame extends JFrame{
     private Vector<String> tnames = new Vector<>();
 
     public ClassRoomFrame(SQLConnection sqlConnection, String deptid) throws SQLException {
-        this.deptid = deptid;
+        // this.deptid = deptid;
 
         try{
             ResultSet resultSet = sqlConnection.executeQuery("select name from department d where d.deptId = "+deptid);
@@ -56,7 +53,6 @@ public class ClassRoomFrame extends JFrame{
                 tnames.add(resultSet.getString("name"));
             }
         }catch(Exception e){
-            e.printStackTrace();
             setVisible(false);
             JOptionPane.showMessageDialog(null, "MySQL Connection Failed!");
             System.exit(0);
@@ -130,7 +126,8 @@ public class ClassRoomFrame extends JFrame{
                     String result = Query1.updateCourse(sqlConnection, deptid, cid, tid, cRoom);
                     JOptionPane.showMessageDialog(null, result);
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "MySQL Connection Failed!");
+                    System.exit(0);
                 }
                 classRoomField.setText("");
             }
@@ -150,7 +147,8 @@ public class ClassRoomFrame extends JFrame{
                     frame.setVisible(true);
                     dispose();
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Unexpected Error Occured!");
+                    System.exit(0);
                 }
                 
             }
@@ -170,7 +168,8 @@ public class ClassRoomFrame extends JFrame{
                     frame.setVisible(true);
                     dispose();
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Unexpected Error Occured!");
+                    System.exit(0);
                 }
                 
             }

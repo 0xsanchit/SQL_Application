@@ -1,6 +1,5 @@
 package com.g1;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -9,7 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,20 +17,17 @@ import java.util.Vector;
 import java.awt.Color;
 
 public class EnrollmentFrame extends JFrame {
-    private JLabel heading;
     // private JLabel l1, l2;
     private JTextField rollnoField;
     private JComboBox<String> courseField;
     private JPanel contentPane;
     private String deptname;
-    private String deptid;
     private JButton process;
     private JButton back;
 
     private Vector<String> cids = new Vector<>();
     private Vector<String> cnames = new Vector<>();
     public EnrollmentFrame(SQLConnection sqlConnection, String depid) throws SQLException {
-        this.deptid = depid;
 
         try {
             ResultSet resultSet = sqlConnection.executeQuery("select name from department d where d.deptId = "+depid);
@@ -47,7 +42,6 @@ public class EnrollmentFrame extends JFrame {
                 cnames.add(resultSet.getString("cname"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
             setVisible(false);
             // UserLogin frame = new UserLogin();
             // frame.setVisible(true);
@@ -111,7 +105,8 @@ public class EnrollmentFrame extends JFrame {
                     String result = Query2.makeEnrollment(sqlConnection, rno, cid);
                     JOptionPane.showMessageDialog(null, result);
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "MySQL Connection Failed!");
+                    System.exit(0);
                 }
                 rollnoField.setText("");
             }
@@ -131,7 +126,8 @@ public class EnrollmentFrame extends JFrame {
                     frame.setVisible(true);
                     dispose();
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Unexpected Error Occured!");
+                    System.exit(0);
                 }
                 
             }
