@@ -12,3 +12,13 @@ make run
 ```
 
 Please find below a few snippets of the app in execution. 
+
+  <img src="Images/img1.jpg" alt="image1" width="750"/>
+  <img src="Images/img2.jpg" alt="image1" width="750"/> 
+  <img src="Images/img3.jpg" alt="image1" width="750"/>
+  <img src="Images/img4.jpg" alt="image1" width="750"/>
+  <img src="Images/img5.jpg" alt="image1" width="750"/>
+  <img src="Images/img6.jpg" alt="image1" width="750"/>
+  <img src="Images/img7.jpg" alt="image1" width="750"/>
+  <img src="Images/img8.jpg" alt="image1" width="750"/>
+  <img src="Images/img9.jpg" alt="image1" width="750"/>
